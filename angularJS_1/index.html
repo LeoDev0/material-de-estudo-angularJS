@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html ng-app="helloWorld" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AngularJS</title>
+</head>
+<body>
+
+<div ng-controller="helloWorldCtrl">
+    {{message}}
+</div>
+
+<p>Input something in the input box:</p>
+<p>Name : <input type="text" ng-model="name" placeholder="Enter name here"></p>
+<h1>Hello {{name}}</h1>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+<script>
+
+    angular.module("helloWorld", [])
+    angular.module("helloWorld").controller("helloWorldCtrl", function($scope) {
+        $scope.message = "Hello World"
+    })
+
+</script>
+</body>
+</html>
