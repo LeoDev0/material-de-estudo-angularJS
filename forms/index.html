@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>Formulários</title>
+
+    <style>
+        input.ng-invalid.ng-touched {
+            background-color: rgba(255, 125, 125, 0.589);
+            color: white;
+        }
+
+        input.ng-valid.ng-touched {
+            background-color: rgba(123, 255, 123, 0.705);
+            color: white;
+        }
+
+        .erro {
+            font-size: 10px;
+            color: gray;
+        }
+    </style>
+</head>
+<body ng-controller="appController">
+
+    <form name="form" novalidate>
+        <label for="name">Nome:</label>
+        <input type="text" name="name" ng-model="pessoa.nome" required>
+        <div class="erro" ng-show="form.name.$touched || form.$submitted">
+            <div ng-show="form.name.$error.required">
+                Campo obrigatório
+            </div>
+        </div>
+        </br>
+        </br>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" ng-model="pessoa.email" required>
+        <div class="erro" ng-show="form.email.$touched || form.$submitted">
+            <div ng-show="form.name.$error.required">
+                Campo obrigatório
+            </div>
+        </div>
+        <div class="erro" ng-show="form.email.$error.email">
+            Campo deve conter um email
+        </div>
+        </br>
+        </br>
+
+        <label>Sexo: </label>
+        <label for="gender">Masculino</label>
+        <input type="radio" name="gender" value="m" ng-model="pessoa.sexo">
+        <label for="gender">Feminino</label>
+        <input type="radio" name="gender" value="f" ng-model="pessoa.sexo">
+        <br>
+        <br>
+
+        <label for="">Estado: </label>
+        <select ng-model="pessoa.estado" required>
+            <option ng-repeat="estado in estados" ng-selected="estado==pessoa.estado" value="{{ estado }}">{{ estado }}</option>
+        </select>
+        <br>
+        <br>
+
+        <button ng-click="salvarPessoa(pessoa)" ng-disabled="form.$invalid">Salvar</button>
+
+        <pre>
+            {{ pessoa | json }}
+        </pre>
+        <br>
+        <br>
+
+        <pre>
+            {{ pessoas | json }}
+        </pre>
+    </form>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
